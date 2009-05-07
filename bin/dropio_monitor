@@ -42,7 +42,8 @@ client.on_asset_added do |asset_name|
 end
 
 client.on_message_received do |time, nick, message|
-  puts "[#{blue(time.strftime("%H:%M"))}] <#{yellow(nick)}> #{message}"
+  print "[#{blue(time.strftime("%H:%M"))}] " if time
+  puts "<#{yellow(nick)}> #{message}"
 end
 
 client.on_join do |time, nick|

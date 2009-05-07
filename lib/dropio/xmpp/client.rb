@@ -79,7 +79,11 @@ module Dropio
         @xmpp_client.auth @password
         @muc_client = Jabber::MUC::SimpleMUCClient.new(@xmpp_client)
         @muc_client.on_message do |time,nick,text|
-          @message_received_cblist.notify_event time, nick, text
+          begin
+            @message_received_cblist.notify_event time, nick, text
+          rescue Exception => e
+            puts e.message
+          end
         end
         @muc_client.on_join do |time,nick|
           @join_cblist.notify_event [time, nick]

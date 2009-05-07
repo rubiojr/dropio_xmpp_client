@@ -3,4 +3,5 @@ Manifest.txt
 README.txt
 Rakefile
 bin/dropio_monitor
+dropio_xmpp_client.gemspec
 lib/dropio/xmpp/client.rb
