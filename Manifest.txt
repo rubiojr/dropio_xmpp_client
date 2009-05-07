@@ -1,0 +1,6 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/dropio_monitor
+lib/dropio/xmpp/client.rb

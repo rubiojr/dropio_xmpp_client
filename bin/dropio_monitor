@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+begin
+  require "#{File.join(File.dirname(__FILE__), '../lib/dropio/xmpp/client')}"
+rescue LoadError => e
+  require 'dropio/push_client'
+end
+require 'term/ansicolor'
+require 'highline/import'
+include Term::ANSIColor
+include Dropio::XMPP
+
+drop_name = ARGV.shift
+if drop_name.nil?
+  $stderr.puts "Usage: dropio_monitor <drop_name>"
+  exit
+end
+
+jid = ask("Jabber ID [myjabberick@jabber.org]: ")
+jid_password = ask("#{jid} password: ") do |q|
+  q.echo = "*"
+end
+muc_chat_pass = ask("Drop chat password: ") { |q| q.echo = '*'}
+nick = ask("Desired nickname: ")
+
+client = Dropio::XMPP::Client.new(
+  "#{jid}/dropio_xmpp_client",
+  jid_password,
+  drop_name,
+  muc_chat_pass,
+  nick
+)
+
+client.on_asset_removed do |message| 
+  Dropio::XMPP::Client.notify "drop.io", "#{message} #{drop_name} by #{nick}" 
+  puts magenta("*** #{message} #{drop_name}")
+end
+
+client.on_asset_added do |asset_name|
+  Dropio::XMPP::Client.notify "drop.io", "'#{asset_name}' was added to #{drop_name} by #{nick}" 
+  puts magenta("*** '#{asset_name}' was added to #{drop_name}")
+end
+
+client.on_message_received do |time, nick, message|
+  puts "[#{blue(time.strftime("%H:%M"))}] <#{yellow(nick)}> #{message}"
+end
+
+client.on_join do |time, nick|
+  puts green("*** '#{time}' #{nick} joined the room")
+end
+
+client.on_leave do |time, nick|
+  puts red("*** '#{time}' #{nick} left the room")
+end
+
+client.connect
+loop do
+  sleep 0.1
+end
