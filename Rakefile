@@ -14,6 +14,7 @@ Hoe.new('dropio_xmpp_client', Dropio::XMPP::VERSION) do |p|
   p.extra_deps << [ "dropio",">= 0.9" ]
   p.extra_deps << [ "xmpp4r",">= 0.4" ]
   p.extra_deps << [ "term-ansicolor",">= 1.0" ]
+  p.extra_deps << [ "highline",">= 1.0" ]
   p.developer('Sergio Rubio', 'sergio@rubio.name')
 end
 

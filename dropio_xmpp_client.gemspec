@@ -27,17 +27,20 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<dropio>, [">= 0.9"])
       s.add_runtime_dependency(%q<xmpp4r>, [">= 0.4"])
       s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0"])
+      s.add_runtime_dependency(%q<highline>, [">= 1.0"])
       s.add_development_dependency(%q<hoe>, [">= 1.12.1"])
     else
       s.add_dependency(%q<dropio>, [">= 0.9"])
       s.add_dependency(%q<xmpp4r>, [">= 0.4"])
       s.add_dependency(%q<term-ansicolor>, [">= 1.0"])
+      s.add_dependency(%q<highline>, [">= 1.0"])
       s.add_dependency(%q<hoe>, [">= 1.12.1"])
     end
   else
     s.add_dependency(%q<dropio>, [">= 0.9"])
     s.add_dependency(%q<xmpp4r>, [">= 0.4"])
     s.add_dependency(%q<term-ansicolor>, [">= 1.0"])
+    s.add_dependency(%q<highline>, [">= 1.0"])
     s.add_dependency(%q<hoe>, [">= 1.12.1"])
   end
 end
