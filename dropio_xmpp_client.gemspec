@@ -4,13 +4,13 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sergio Rubio"]
-  s.date = %q{2009-05-07}
+  s.date = %q{2009-05-08}
   s.default_executable = %q{dropio_monitor}
   s.description = %q{drop.io XMPP Client}
   s.email = %q{sergio@rubio.namesergio@rubio.name}
   s.executables = ["dropio_monitor"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
-  s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "bin/dropio_monitor", "lib/dropio/xmpp/client.rb"]
+  s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "bin/dropio_monitor", "dropio_xmpp_client.gemspec", "lib/dropio/xmpp/client.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/rubiojr/dropio_xmpp_client}
   s.rdoc_options = ["--main", "README.txt"]
@@ -24,11 +24,20 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<dropio>, [">= 0.9"])
+      s.add_runtime_dependency(%q<xmpp4r>, [">= 0.4"])
+      s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0"])
       s.add_development_dependency(%q<hoe>, [">= 1.12.1"])
     else
+      s.add_dependency(%q<dropio>, [">= 0.9"])
+      s.add_dependency(%q<xmpp4r>, [">= 0.4"])
+      s.add_dependency(%q<term-ansicolor>, [">= 1.0"])
       s.add_dependency(%q<hoe>, [">= 1.12.1"])
     end
   else
+    s.add_dependency(%q<dropio>, [">= 0.9"])
+    s.add_dependency(%q<xmpp4r>, [">= 0.4"])
+    s.add_dependency(%q<term-ansicolor>, [">= 1.0"])
     s.add_dependency(%q<hoe>, [">= 1.12.1"])
   end
 end
