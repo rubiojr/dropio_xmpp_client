@@ -11,6 +11,8 @@ Hoe.new('dropio_xmpp_client', Dropio::XMPP::VERSION) do |p|
   p.summary = "drop.io XMPP Client Library"
   p.url = "http://github.com/rubiojr/dropio_xmpp_client"
   p.remote_rdoc_dir = '' # Release to root
+  p.extra_deps << [ "dropio",">= 0.9" ]
+  p.extra_deps << [ "xmpp4r",">= 0.4" ]
   p.developer('Sergio Rubio', 'sergio@rubio.name')
 end
 
